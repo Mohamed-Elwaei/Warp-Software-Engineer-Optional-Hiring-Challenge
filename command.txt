@@ -1,0 +1,14 @@
+awk -F'|' '
+/^#/ { next }
+{
+  dest = $3; gsub(/[[:space:]]/, "", dest)
+  status = $4; gsub(/^[[:space:]]+|[[:space:]]+$/, "", status)
+  dur = $6; gsub(/[[:space:]]/, "", dur)
+  code = $8; gsub(/^[[:space:]]+|[[:space:]]+$/, "", code)
+  if (dest == "Mars" && status == "Completed" && dur+0 > max) {
+    max = dur+0
+    result = code
+  }
+}
+END { print "Duration: " max " days\nSecurity Code: " result }
+' space_missions.log
