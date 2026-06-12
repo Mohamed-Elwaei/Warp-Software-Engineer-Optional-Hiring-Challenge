@@ -17,7 +17,7 @@ with open("space_missions.log", "r") as f:
 
         if destination == "Mars" and status == "Completed":
             try:
-                d = int(duration)
+                d = float(duration)
                 if d > best_duration:
                     best_duration = d
                     correct_tuple = fields
@@ -26,4 +26,4 @@ with open("space_missions.log", "r") as f:
 
 
 with open("answer.txt", "w") as answer:
-    answer.write("|".join(fields))
+    answer.write("|".join(correct_tuple))
